@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# -ne 3 ]; then
+	echo "Usage: $0 <dimensione_threadPool_server> <out_file> <numero client>"
+fi
+
+./server13_2 $1 &
+PID=$! 
+time ./test_client.sh $2 $3 
+sleep 5
+kill -s SIGINT $PID
+
